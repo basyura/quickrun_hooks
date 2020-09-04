@@ -8,8 +8,13 @@ function! s:hook.init(session) abort
 endfunction
 
 function! s:hook.on_success(session, context) abort
-  let dir = fnamemodify(a:session.config.srcfile, ':p:h')
+
+  if !has_key(a:session.config, 'hook/open')
+    return
+  endif
+
   let file = a:session.config['hook/open']
+  let dir = fnamemodify(a:session.config.srcfile, ':p:h')
 
   let cmd = "open"
   let path = dir . "/" . file
