@@ -20,6 +20,7 @@ function! s:hook.on_success(session, context) abort
   let path = dir . "/" . file
   if executable("explorer")
     let path = dir . "\\" . file
+    let cmd ="explorer"
   endif
 
   if !filereadable(path)
